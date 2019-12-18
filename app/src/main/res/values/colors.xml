@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="heading_color">#25282B</color>
+    <color name="list_margin">#e8e8e8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="error_heading1">#4A4A4A</color>
+    <color name="error_heading2">#929292</color>
+    <color name="btn_back">#31B057</color>
+</resources>

@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "kotlinAssignment1"
+        property "sonar.projectKey", "kotlinAssignment1"
+        property "sonar.host.url", "http://172.16.4.148:9000"
+        property "sonar.language", "java"
+        property "sonar.sources", "src/main/"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+    }
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+    compileSdkVersion 28
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.tahir.testkotlinproject"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def support_library_version = '1.0.0-beta01'
+    def room_version = "2.0.0"
+    def lifecycle_version = "2.0.0"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation "com.google.android.material:material:$support_library_version"
+    implementation "androidx.cardview:cardview:$support_library_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    // use -ktx for Kotlin
+    // alternatively - just LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    // alternatively - Lifecycles only (no ViewModel or LiveData).
+    //     Support library depends on this lightweight import
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    /*   kapt "android.arch.persistence.room:compiler:$room_version"
+
+       //  implementation "android.arch.paging:runtime:$paging_version"
+       // use kapt for Kotlin
+       // alternately - if using Java8, use the following instead of compiler
+       implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+       // optional - ReactiveStreams support for LiveData
+       implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+
+       // optional - Test helpers for LiveData
+       testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+
+       implementation "androidx.room:room-runtime:$room_version"
+       // optional - RxJava support for Room
+       implementation "androidx.room:room-rxjava2:$room_version"
+       implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+       implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'*/
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation "com.google.dagger:dagger:2.23.2"
+    kapt "com.google.dagger:dagger-compiler:2.23.2"
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.github.cesarferreira:faker:1.2.1'
+
+
+}
