@@ -1,15 +1,13 @@
 package com.tahir.omiseassignment.ViewModels
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tahir.omiseassignment.Components.App
-import com.tahir.omiseassignment.Models.BaseClass
-import com.tahir.omiseassignment.Models.Donation
 import com.tahir.omiseassignment.Models.DonationResponse
 import com.tahir.omiseassignment.Repository.AppRepository
-import okhttp3.ResponseBody
 import javax.inject.Inject
 
 class DonationActivityViewModel(application: Application) : AndroidViewModel(application) {
@@ -18,11 +16,15 @@ class DonationActivityViewModel(application: Application) : AndroidViewModel(app
 
     lateinit var repo: AppRepository
 
+    @Inject
+    lateinit var context: Context
+
 
     init {
 
 
         App.app.appLevelComponent.inject(this)
+
     }
 
     fun ifDataIsloading(): MutableLiveData<Boolean> {
@@ -31,8 +33,8 @@ class DonationActivityViewModel(application: Application) : AndroidViewModel(app
     }
     // just refresh the data based on the result.
 
-    fun postDonation(donation: Donation): LiveData<DonationResponse> {
-        return repo!!.performDonation(donation)
+    fun postDonation(name: String, cardnumber: String, amount: String): LiveData<DonationResponse> {
+        return repo!!.performDonation(name, cardnumber, amount)
 
     }
 

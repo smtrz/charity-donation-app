@@ -44,7 +44,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     aaptOptions {
-        additionalParameters "--no-version-vectors"}
+        additionalParameters "--no-version-vectors"
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -112,7 +113,13 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.23.2"
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation 'com.github.cesarferreira:faker:1.2.1'
-    implementation 'co.omise:omise-android:3.0.0'
+    implementation('co.omise:omise-android:3.0.0') {
+
+
+        exclude group: 'com.android.support'
+
+
+    }
     implementation 'com.android.support:multidex:1.0.3'
 
 

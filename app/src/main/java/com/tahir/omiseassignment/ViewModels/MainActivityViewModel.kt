@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tahir.omiseassignment.Components.App
 import com.tahir.omiseassignment.Models.BaseClass
+import com.tahir.omiseassignment.Models.data
 import com.tahir.omiseassignment.Repository.AppRepository
 import javax.inject.Inject
 

@@ -80,6 +80,7 @@ object UIHelper {
     }
 
     fun hideSoftKeyboard(context: Context?, view: View) {
+
         if (context == null) return
         val imm = context
             .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -99,7 +100,12 @@ object UIHelper {
             .setCancelable(true)
             .setNegativeButton(
                 "OK"
-            ) { dialog, id -> dialog.cancel() }
+            ) { dialog, id ->
+                dialog.cancel()
+                if (context is Activity) {
+                    context.finish()
+                }
+            }
 
         val alert = builder.create()
         alert.show()

@@ -4,12 +4,9 @@ package com.tahir.omiseassignment.Interfaces
 import com.tahir.omiseassignment.Models.BaseClass
 import com.tahir.omiseassignment.Models.Donation
 import com.tahir.omiseassignment.Models.DonationResponse
-import okhttp3.ResponseBody
+import com.tahir.omiseassignment.Models.data
 import retrofit2.Call
-import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface EndpointsInterface {
@@ -18,12 +15,25 @@ interface EndpointsInterface {
 
     ): Call<BaseClass>
 
-
+/*
 
     @POST("donations")
-    fun postDonation(@Body donation: Donation
+    fun postDonation(
+        @Body donation: Donation
 
     ): Call<DonationResponse>
+*/
+
+    @FormUrlEncoded
+    @POST("charges")
+    fun createCharge(
+
+        @Header("Authorization") header: String, @Field("amount") amount: Int, @Field("currency") currency: String, @Field(
+            "card"
+        ) card: String
+
+    ): Call<DonationResponse>
+
 
 }
 

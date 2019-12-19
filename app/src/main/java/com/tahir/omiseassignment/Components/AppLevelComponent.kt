@@ -28,7 +28,5 @@ interface AppLevelComponent {
     fun inject(ar: DonationActivityViewModel)
 
 
-    //fun inject(ma: GroupMemeberActivity)
-
 }
 

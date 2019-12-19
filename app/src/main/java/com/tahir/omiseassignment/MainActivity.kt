@@ -12,11 +12,13 @@ import com.tahir.omiseassignment.ViewModels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
 
     @Inject
+    @field:Named("charity")
     lateinit var retrofit: Retrofit
 
     lateinit var adapter: CharityAdapter

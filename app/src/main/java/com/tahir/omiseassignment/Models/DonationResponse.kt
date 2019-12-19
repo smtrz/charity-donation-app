@@ -2,7 +2,9 @@ package com.tahir.omiseassignment.Models
 
 class DonationResponse {
     var success: Boolean = false
-    var error_code: String? = null
+    var code: String? = null
     var error_message: String? = null
-    var statusCode: Int? = 0
+    var status: String? = null
+    var message: String? = null
+    var failure_message :String?=null
 }

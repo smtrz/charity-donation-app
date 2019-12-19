@@ -16,7 +16,7 @@ class App : Application() {
         // we only have to set constructor modules or context modules.
         appLevelComponent = DaggerAppLevelComponent.builder()
             .contextModule(ContextModule(this))
-            .netModule(NetModule("https://virtserver.swaggerhub.com/chakritw/tamboon-api/1.0.0/"))
+            .netModule(NetModule())
             .repositoryModule(RepositoryModule())
             .build()
 
