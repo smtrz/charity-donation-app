@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.tahir.omiseassignment.Components.App
 import com.tahir.omiseassignment.Interfaces.EndpointsInterface
 import com.tahir.omiseassignment.Models.BaseClass
+import com.tahir.omiseassignment.Models.Donation
+import com.tahir.omiseassignment.Models.DonationResponse
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,16 +19,25 @@ class AppRepository {
     lateinit var retrofit: Retrofit
     internal var dataLoading = MutableLiveData<Boolean>()
     internal var charityData = MutableLiveData<BaseClass>()
-
+    internal var donationData = MutableLiveData<DonationResponse>()
+   // internal lateinit var donationres :DonationResponse
     init {
         App.app.appLevelComponent.inject(this)
 
     }
-    fun getallArticles(): LiveData<BaseClass> {
+
+    fun getallCharities(): LiveData<BaseClass> {
         getData()
         return charityData
 
     }
+
+    fun performDonation(donation: Donation):LiveData<DonationResponse>
+    {
+        donate(donation)
+        return donationData
+    }
+
 
     fun getData() {
 
@@ -43,17 +55,7 @@ class AppRepository {
 
                     charityData.postValue(response.body())
 
-                    /* dataLoading.value = false
 
-                     if (response.isSuccessful) {
-                         //purging items
-                         deleteAllitems()
-                         // storing the date
-                         Sp_Get_Store_Data.storeStringData(now.toString(), "data-time", c)
-
-
-
-                         insertItems(response.body())*/
                 } else {
                 }
             }
@@ -70,4 +72,38 @@ class AppRepository {
 
     }
 
+
+    fun donate(donation:Donation) {
+
+
+        dataLoading.value = true
+        //  pd.show();
+        val endpoints = retrofit!!.create(EndpointsInterface::class.java)
+        endpoints.postDonation(donation).enqueue(object : Callback<DonationResponse> {
+            override fun onResponse(
+                call: Call<DonationResponse>,
+                response: Response<DonationResponse>
+            ) {
+                dataLoading.value = false
+                if (response.isSuccessful) {
+
+                  //  donationData.postValue(response.body())
+
+
+                } else {
+                }
+
+              /*  donationres.error_code = response.body()?.error_code
+                donationres.statusCode = response.code()
+                donationres.statusCode = response.code()*/
+
+                donationData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<DonationResponse>, t: Throwable) {
+                dataLoading.value = false
+
+            }
+        })
+    }
 }

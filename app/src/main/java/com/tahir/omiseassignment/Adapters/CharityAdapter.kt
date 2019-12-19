@@ -1,6 +1,8 @@
 package com.tahir.omiseassignment.Adapters
 
 import android.content.Context
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.tahir.omiseassignment.Components.App
+import com.tahir.omiseassignment.DonationActivity
 import com.tahir.omiseassignment.Helpers.DownloadImageTask
 import com.tahir.omiseassignment.Models.data
 import com.tahir.omiseassignment.R
@@ -56,11 +59,11 @@ class CharityAdapter(
 
             holder.cardView!!.setOnClickListener {
 
+                val i: Intent = Intent(context, DonationActivity::class.java)
+                i.setFlags(FLAG_ACTIVITY_NEW_TASK)
+                i.putExtra("charity", gson.toJson(charities!![position]))
+                context.startActivity(i)
 
-                /*   val i: Intent = Intent(context, GroupMemeberActivity::class.java)
-                   i.setFlags(FLAG_ACTIVITY_NEW_TASK)
-                   i.putExtra("data", gson.toJson(groups!![position]))
-                   context.startActivity(i)*/
             }
 
 

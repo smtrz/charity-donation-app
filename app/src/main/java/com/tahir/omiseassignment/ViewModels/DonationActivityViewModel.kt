@@ -6,10 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tahir.omiseassignment.Components.App
 import com.tahir.omiseassignment.Models.BaseClass
+import com.tahir.omiseassignment.Models.Donation
+import com.tahir.omiseassignment.Models.DonationResponse
 import com.tahir.omiseassignment.Repository.AppRepository
+import okhttp3.ResponseBody
 import javax.inject.Inject
 
-class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
+class DonationActivityViewModel(application: Application) : AndroidViewModel(application) {
 
     @Inject
 
@@ -28,8 +31,8 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }
     // just refresh the data based on the result.
 
-    fun callCharityAPI(): LiveData<BaseClass> {
-        return repo!!.getallCharities()
+    fun postDonation(donation: Donation): LiveData<DonationResponse> {
+        return repo!!.performDonation(donation)
 
     }
 

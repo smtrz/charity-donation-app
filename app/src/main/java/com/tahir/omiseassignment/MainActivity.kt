@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
 import com.tahir.omiseassignment.Adapters.CharityAdapter
 import com.tahir.omiseassignment.Models.BaseClass
 import com.tahir.omiseassignment.ViewModels.MainActivityViewModel
@@ -19,8 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var retrofit: Retrofit
-    @Inject
-    lateinit var gson: Gson
+
     lateinit var adapter: CharityAdapter
 
     lateinit var viewModel: MainActivityViewModel

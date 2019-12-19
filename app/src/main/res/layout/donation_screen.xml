@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/act_toolbar" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name">
+            ​
+
+            <EditText
+                android:id="@+id/edtHolderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1" />
+            ​
+        </com.google.android.material.textfield.TextInputLayout>
+        ​
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Card Number">​
+
+            <EditText
+                android:id="@+id/edtCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789-"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="19"
+                android:maxLines="1" />​
+        </com.google.android.material.textfield.TextInputLayout>
+        ​
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount(thb)">
+            ​
+
+            <EditText
+                android:id="@+id/edtAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="8"
+                android:maxLines="1" />
+            ​
+        </com.google.android.material.textfield.TextInputLayout>
+        ​
+
+        <Button
+            android:id="@+id/pay"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:text="Pay Now"
+            android:textColor="@android:color/white" />​
+    </LinearLayout>
+
+</LinearLayout>
