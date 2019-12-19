@@ -86,7 +86,7 @@ class DonationActivity : AppCompatActivity(), View.OnClickListener {
             Observer<DonationResponse> { dr ->
                 UIHelper.showAlertDialog(
                     "Thankyou for the contribution. ",
-                    "Payment Successfull",
+                    "Payment successful",
                     this@DonationActivity
                 )
 
