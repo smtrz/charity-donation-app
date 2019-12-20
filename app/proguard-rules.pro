@@ -44,13 +44,9 @@
 }
 
 -keep class okhttp3.** { *; }
-
 -keep interface okhttp3.** { *; }
-
 -keep public class com.tahir.omiseassignment.Models.**{*;}
-
-
+-keep class com.tahir.omiseassignment.Modules.**{*;}
 -keep public class com.tahir.omiseassignment.Enums.**{*;}
-
-
+-keep public class com.tahir.omiseassignment.Configurations.**{*;}
 

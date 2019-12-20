@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.tahir.omiseassignment.Components.App
+import com.tahir.omiseassignment.Configurations.App
 import com.tahir.omiseassignment.Models.DonationResponse
 import com.tahir.omiseassignment.Repository.AppRepository
 import javax.inject.Inject

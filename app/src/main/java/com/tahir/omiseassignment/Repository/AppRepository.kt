@@ -3,12 +3,15 @@ package com.tahir.omiseassignment.Repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.tahir.omiseassignment.AppConstant
-import com.tahir.omiseassignment.Components.App
+import com.tahir.omiseassignment.Configurations.App
+import com.tahir.omiseassignment.Helpers.UIHelper
 import com.tahir.omiseassignment.Interfaces.EndpointsInterface
 import com.tahir.omiseassignment.Models.BaseClass
 import com.tahir.omiseassignment.Models.Donation
 import com.tahir.omiseassignment.Models.DonationResponse
+import com.tahir.omiseassignment.Models.TokenResponse
 import okhttp3.Credentials
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,7 +33,8 @@ class AppRepository {
     @field:Named("omise_token")
     lateinit var retrofit_omise_token: Retrofit
 
-
+    @Inject
+    lateinit var gson: Gson
     internal var dataLoading = MutableLiveData<Boolean>()
     internal var charityData = MutableLiveData<BaseClass>()
     internal var donationData = MutableLiveData<DonationResponse>()
@@ -151,26 +155,50 @@ class AppRepository {
             cardExpMonth,
             cardExpyear
         )
-            .enqueue(object : Callback<Map<String, Object>> {
+            .enqueue(object : Callback<TokenResponse> {
                 override fun onResponse(
-                    call: Call<Map<String, Object>>,
-                    response: Response<Map<String, Object>>
+                    call: Call<TokenResponse>,
+                    response: Response<TokenResponse>
                 ) {
                     dataLoading.value = false
 
-                    val token: String? = response.body()!!.get("id").toString()
+
+                    if (response.isSuccessful) {
+
+                        /*  var tokenResponse: TokenResponse =
+                             gson.fromJson(response.body()?.string(), TokenResponse::class.java)
+ */
 
 
-                    val d = Donation(
-                        cardName,
-                        token!!,
-                        amount.toInt()
-                    )
-                    donate(d)
+                        if (!response.body()?.object_val.equals("error")) {
+                            val token: String? = response.body()?.id
+                            val d = Donation(
+                                cardName,
+                                token!!,
+                                amount.toInt()
+                            )
+                            donate(d)
+
+
+                        } else {
+
+                            UIHelper.showLongToastInCenter(context, "Something went wrong.");
+                        }
+                        /* } else {
+                         UIHelper.showLongToastInCenter(context, "Error occured.");
+
+
+                     }*/
+                    } else {
+                        var tokenResponse: TokenResponse =
+                            gson.fromJson(response.errorBody()?.string(), TokenResponse::class.java)
+                        UIHelper.showLongToastInCenter(context, tokenResponse.message!!);
+
+                    }
 
                 }
 
-                override fun onFailure(call: Call<Map<String, Object>>, t: Throwable) {
+                override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
                     dataLoading.value = false
 
                 }

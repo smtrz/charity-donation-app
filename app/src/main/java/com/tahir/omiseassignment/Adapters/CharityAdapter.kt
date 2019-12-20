@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import com.tahir.omiseassignment.Activities.DonationActivity
-import com.tahir.omiseassignment.Components.App
+import com.tahir.omiseassignment.Configurations.App
 import com.tahir.omiseassignment.Models.data
 import com.tahir.omiseassignment.R
 import kotlinx.android.synthetic.main.charity_list_item.view.*

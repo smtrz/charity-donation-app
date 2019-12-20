@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.Observer;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.tahir.omiseassignment.Components.App;
+import com.tahir.omiseassignment.Configurations.App;
 import com.tahir.omiseassignment.Enums.Codes;
 import com.tahir.omiseassignment.Models.DonationResponse;
 import com.tahir.omiseassignment.Repository.AppRepository;

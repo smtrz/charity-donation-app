@@ -1,8 +1,9 @@
-package com.tahir.omiseassignment.Components;
+package com.tahir.omiseassignment.Configurations;
 
 import android.app.Application
+import com.tahir.omiseassignment.Components.AppLevelComponent
+import com.tahir.omiseassignment.Components.DaggerAppLevelComponent
 import com.tahir.omiseassignment.Modules.ContextModule
-import com.tahir.omiseassignment.Modules.NetModule
 import com.tahir.omiseassignment.Modules.RepositoryModule
 
 
@@ -26,6 +27,7 @@ class App : Application() {
     fun getApp(): App? {
         return app
     }
+
     companion object {
         lateinit var app: App
     }

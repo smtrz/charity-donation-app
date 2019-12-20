@@ -8,7 +8,7 @@ import com.tahir.omiseassignment.GroupMemeberActivity
 */
 import com.tahir.omiseassignment.Activities.MainActivity
 import com.tahir.omiseassignment.Modules.ContextModule
-import com.tahir.omiseassignment.Modules.NetModule
+import com.tahir.omiseassignment.Configurations.NetModule
 import com.tahir.omiseassignment.Modules.RepositoryModule
 import com.tahir.omiseassignment.Repository.AppRepository
 import com.tahir.omiseassignment.ViewModels.DonationActivityViewModel

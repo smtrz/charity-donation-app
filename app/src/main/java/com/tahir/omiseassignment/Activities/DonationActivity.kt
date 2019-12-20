@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.gson.Gson
-import com.tahir.omiseassignment.Components.App
+import com.tahir.omiseassignment.Configurations.App
 import com.tahir.omiseassignment.Enums.Codes
 import com.tahir.omiseassignment.Helpers.UIHelper
 import com.tahir.omiseassignment.Models.DonationResponse
@@ -64,7 +64,7 @@ class DonationActivity : AppCompatActivity(), View.OnClickListener {
 
                                         UIHelper.showAlertDialog(
                                             "Thankyou for the contribution. ",
-                                            "Payment successful " + response.status_code,
+                                            "Payment Successful",
                                             this@DonationActivity
                                         )
 

@@ -6,7 +6,7 @@
 
     <application
 
-        android:name="com.tahir.omiseassignment.Components.App"
+        android:name="com.tahir.omiseassignment.Configurations.App"
         android:allowBackup="true"
 
         android:icon="@mipmap/ic_launcher"
