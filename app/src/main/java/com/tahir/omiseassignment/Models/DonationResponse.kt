@@ -7,4 +7,6 @@ class DonationResponse {
     var status: String? = null
     var message: String? = null
     var failure_message :String?=null
+    var status_code :Int?=0
+
 }

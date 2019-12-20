@@ -1,4 +1,4 @@
-package com.tahir.omiseassignment
+package com.tahir.omiseassignment.Activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tahir.omiseassignment.Adapters.CharityAdapter
 import com.tahir.omiseassignment.Models.BaseClass
+import com.tahir.omiseassignment.R
 import com.tahir.omiseassignment.ViewModels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
@@ -37,12 +38,16 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.callCharityAPI().observe(this,
             Observer<BaseClass> { charities ->
+
                 bindAdapter(charities)
 
             })
 
     }
 
+    /**
+     * Binds data with the recyclerview.
+     */
     fun bindAdapter(charities: BaseClass) {
 
         rv_repos?.layoutManager =

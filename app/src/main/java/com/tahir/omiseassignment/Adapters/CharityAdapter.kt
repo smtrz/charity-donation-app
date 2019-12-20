@@ -11,12 +11,12 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
+import com.tahir.omiseassignment.Activities.DonationActivity
 import com.tahir.omiseassignment.Components.App
-import com.tahir.omiseassignment.DonationActivity
-import com.tahir.omiseassignment.Helpers.DownloadImageTask
 import com.tahir.omiseassignment.Models.data
 import com.tahir.omiseassignment.R
-import kotlinx.android.synthetic.main.repo_list_item.view.*
+import kotlinx.android.synthetic.main.charity_list_item.view.*
 import javax.inject.Inject
 
 
@@ -42,7 +42,7 @@ class CharityAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GrpViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.repo_list_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.charity_list_item, parent, false)
         return GrpViewHolder(view)
     }
 
@@ -54,11 +54,10 @@ class CharityAdapter(
 
             holder.heading!!.text =
                 charities!!.get(position).id.toString()
-            DownloadImageTask(holder.img!!).execute(charities!!.get(position).logo_url);
 
+            Picasso.get().load(charities!!.get(position).logo_url).into(holder.img)
 
             holder.cardView!!.setOnClickListener {
-
                 val i: Intent = Intent(context, DonationActivity::class.java)
                 i.setFlags(FLAG_ACTIVITY_NEW_TASK)
                 i.putExtra("charity", gson.toJson(charities!![position]))

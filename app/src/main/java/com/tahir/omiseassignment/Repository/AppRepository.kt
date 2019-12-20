@@ -3,14 +3,8 @@ package com.tahir.omiseassignment.Repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import co.omise.android.api.Client
-import co.omise.android.api.RequestListener
-import co.omise.android.models.CardParam
-import co.omise.android.models.Token
+import com.tahir.omiseassignment.AppConstant
 import com.tahir.omiseassignment.Components.App
-import com.tahir.omiseassignment.Configurations.AppConstant
-import com.tahir.omiseassignment.Enums.Codes
-import com.tahir.omiseassignment.Helpers.UIHelper
 import com.tahir.omiseassignment.Interfaces.EndpointsInterface
 import com.tahir.omiseassignment.Models.BaseClass
 import com.tahir.omiseassignment.Models.Donation
@@ -32,9 +26,15 @@ class AppRepository {
     @Inject
     @field:Named("omise")
     lateinit var retrofit_omise: Retrofit
+    @Inject
+    @field:Named("omise_token")
+    lateinit var retrofit_omise_token: Retrofit
+
+
     internal var dataLoading = MutableLiveData<Boolean>()
     internal var charityData = MutableLiveData<BaseClass>()
     internal var donationData = MutableLiveData<DonationResponse>()
+    internal var paymentCodeData = MutableLiveData<Int>()
     @Inject
     lateinit var context: Context
 
@@ -53,9 +53,8 @@ class AppRepository {
         name: String,
         cardnumber: String,
         amount: String
-    ): LiveData<DonationResponse> {
-        doPaymentProcess(name, cardnumber, amount)
-        return donationData
+    ) {
+        doPaymentProcess(name, cardnumber, "10", "2020", amount)
     }
 
 
@@ -63,7 +62,7 @@ class AppRepository {
 
 
         dataLoading.value = true
-        //  pd.show();
+
         val endpoints = retrofitcharity!!.create(EndpointsInterface::class.java)
         endpoints.getCharities().enqueue(object : Callback<BaseClass> {
             override fun onResponse(
@@ -92,6 +91,16 @@ class AppRepository {
 
     }
 
+    fun getDonationResponseData(): MutableLiveData<DonationResponse> {
+
+
+        return donationData
+    }
+
+
+    fun getPaymentCodesData(): MutableLiveData<Int> {
+        return paymentCodeData
+    }
 
     fun donate(donation: Donation) {
 
@@ -107,47 +116,12 @@ class AppRepository {
                     response: Response<DonationResponse>
                 ) {
                     dataLoading.value = false
-                    when (response.code()) {
-                        200 ->
-                            when (response.body()?.status) {
-                                Codes.failed.toString() ->
-                                    UIHelper.showShortToastInCenter(
-                                        context,
-                                        response.body()?.failure_message!!
-                                    )
-                                // send data to the viewmodel and activity if the payment is successful.
 
-                                Codes.successful.toString() ->
-                                    donationData.postValue(response.body())
+                    val updated_response: DonationResponse = response.body()!!
 
-                            }
+                    updated_response.status_code = response.code()
 
-
-                        401
-                        ->
-                            UIHelper.showShortToastInCenter(context, "Unauthoized")
-                        404 ->
-                            // Token not found
-                            UIHelper.showShortToastInCenter(
-                                context,
-                                "Token for the transaction doesnot exist."
-                            )
-                        400 ->
-                            // Token not found
-                            when (response.body()?.code) {
-                                Codes.invalid_charge.toString() ->
-                                    UIHelper.showShortToastInCenter(context, "Invalid charge")
-
-
-                                Codes.used_token.toString() ->
-                                    UIHelper.showShortToastInCenter(
-                                        context,
-                                        "Token is already used"
-                                    )
-                            }
-
-
-                    }
+                    donationData.postValue(updated_response)
 
 
                 }
@@ -159,37 +133,49 @@ class AppRepository {
             })
     }
 
+
     fun doPaymentProcess(
-        name: String,
+        cardName: String,
         cardNumber: String,
-        amount: String
+        cardExpMonth: String,
+        cardExpyear: String, amount: String
     ) {
-        val client = Client(AppConstant.OMISE_PKEY)
-        val cardParam = CardParam(
-            name = name,
-            number = cardNumber,
-            expirationMonth = 10,
-            expirationYear = 2020,
-            securityCode = "123"
+
+        var basic_auth = Credentials.basic(AppConstant.OMISE_PKEY, "")
+
+        dataLoading.value = true
+        val endpoints = retrofit_omise_token!!.create(EndpointsInterface::class.java)
+        endpoints.createToken(
+            basic_auth, cardName,
+            cardNumber,
+            cardExpMonth,
+            cardExpyear
         )
-        val request = Token.CreateTokenRequestBuilder(cardParam).build()
-        client.send(request, object : RequestListener<Token> {
-            override fun onRequestSucceed(model: Token) {
-                // you've got a Token!
-                val d = Donation(
-                    name,
-                    model.id!!,
-                    amount.toInt()
-                )
-                donate(d)
-            }
+            .enqueue(object : Callback<Map<String, Object>> {
+                override fun onResponse(
+                    call: Call<Map<String, Object>>,
+                    response: Response<Map<String, Object>>
+                ) {
+                    dataLoading.value = false
 
-            override fun onRequestFailed(throwable: Throwable) {
+                    val token: String? = response.body()!!.get("id").toString()
 
-                UIHelper.showLongToastInCenter(context, throwable.message.toString())
 
-            }
-        })
+                    val d = Donation(
+                        cardName,
+                        token!!,
+                        amount.toInt()
+                    )
+                    donate(d)
+
+                }
+
+                override fun onFailure(call: Call<Map<String, Object>>, t: Throwable) {
+                    dataLoading.value = false
+
+                }
+            })
     }
+
 
 }

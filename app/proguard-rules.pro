@@ -19,3 +19,38 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-ignorewarnings
+
+
+-keepattributes *Annotation*
+-dontwarn rx.**
+
+-dontwarn okio.**
+
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+
+-dontwarn retrofit.**
+-dontwarn retrofit.appengine.UrlFetchClient
+-keep class retrofit.** { *; }
+
+
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-keepclasseswithmembers interface * {
+    @retrofit2.* <methods>;
+}
+
+-keep class okhttp3.** { *; }
+
+-keep interface okhttp3.** { *; }
+
+-keep public class com.tahir.omiseassignment.Models.**{*;}
+
+
+-keep public class com.tahir.omiseassignment.Enums.**{*;}
+
+
+

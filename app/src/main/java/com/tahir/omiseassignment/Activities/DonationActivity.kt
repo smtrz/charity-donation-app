@@ -1,4 +1,4 @@
-package com.tahir.omiseassignment
+package com.tahir.omiseassignment.Activities
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.gson.Gson
 import com.tahir.omiseassignment.Components.App
+import com.tahir.omiseassignment.Enums.Codes
 import com.tahir.omiseassignment.Helpers.UIHelper
 import com.tahir.omiseassignment.Models.DonationResponse
 import com.tahir.omiseassignment.Models.data
+import com.tahir.omiseassignment.R
 import com.tahir.omiseassignment.ViewModels.DonationActivityViewModel
 import kotlinx.android.synthetic.main.donation_screen.*
 import javax.inject.Inject
@@ -39,7 +41,73 @@ class DonationActivity : AppCompatActivity(), View.OnClickListener {
         val charity: data = gson.fromJson(groupObject, data::class.java)
         edtHolderName.setText(charity.name)
 
+        viewModel.getDonationResponse().observe(
+            this,
+            object : Observer<DonationResponse> {
+                override fun onChanged(response: DonationResponse?) {
 
+                    if (response != null) {
+
+                        when (response.status_code) {
+                            200 ->
+
+                                when (response.status) {
+                                    Codes.failed.toString() ->
+                                        UIHelper.showShortToastInCenter(
+                                            context,
+                                            response.failure_message!!
+                                        )
+
+
+                                    Codes.successful.toString() ->
+
+
+                                        UIHelper.showAlertDialog(
+                                            "Thankyou for the contribution. ",
+                                            "Payment successful " + response.status_code,
+                                            this@DonationActivity
+                                        )
+
+
+                                }
+
+
+                            401
+                            ->
+
+                                UIHelper.showShortToastInCenter(context, "Unauthoized")
+                            404 ->
+
+                                // Token not found
+                                UIHelper.showShortToastInCenter(
+                                    context,
+                                    "Token for the transaction doesnot exist."
+                                )
+                            400 ->
+                                // Token not found
+                                when (response?.code) {
+                                    Codes.invalid_charge.toString() ->
+                                        UIHelper.showShortToastInCenter(context, "Invalid charge")
+
+
+                                    Codes.used_token.toString() ->
+
+                                        UIHelper.showShortToastInCenter(
+                                            context,
+                                            "Token is already used"
+                                        )
+                                }
+
+
+                        }
+                        // because we will come back to this activity for a new transaction therefore we need not to get hold of the data
+
+                        viewModel.getDonationResponse().postValue(null)
+
+                    }
+
+                }
+            })
     }
 
     override fun onClick(v: View?) {
@@ -82,16 +150,10 @@ class DonationActivity : AppCompatActivity(), View.OnClickListener {
             edtHolderName.text.toString(),
             edtCardNumber.text.toString(),
             edtAmount.text.toString()
-        ).observe(this,
-            Observer<DonationResponse> { dr ->
-                UIHelper.showAlertDialog(
-                    "Thankyou for the contribution. ",
-                    "Payment successful",
-                    this@DonationActivity
-                )
+        )
 
-            })
 
     }
+
 
 }

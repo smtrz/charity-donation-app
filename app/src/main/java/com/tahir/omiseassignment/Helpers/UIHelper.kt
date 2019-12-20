@@ -97,11 +97,11 @@ object UIHelper {
         val builder = AlertDialog.Builder(context)
         builder.setMessage(message)
             .setTitle(title)
-            .setCancelable(true)
+            .setCancelable(false)
             .setNegativeButton(
                 "OK"
             ) { dialog, id ->
-                dialog.cancel()
+                dialog.dismiss()
                 if (context is Activity) {
                     context.finish()
                 }

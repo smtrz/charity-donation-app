@@ -2,11 +2,11 @@ package com.tahir.omiseassignment.Components
 
 
 import com.tahir.omiseassignment.Adapters.CharityAdapter
-import com.tahir.omiseassignment.DonationActivity
+import com.tahir.omiseassignment.Activities.DonationActivity
 /*
 import com.tahir.omiseassignment.GroupMemeberActivity
 */
-import com.tahir.omiseassignment.MainActivity
+import com.tahir.omiseassignment.Activities.MainActivity
 import com.tahir.omiseassignment.Modules.ContextModule
 import com.tahir.omiseassignment.Modules.NetModule
 import com.tahir.omiseassignment.Modules.RepositoryModule

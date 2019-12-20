@@ -1,7 +1,7 @@
 package com.tahir.omiseassignment.Modules
 
 import com.google.gson.Gson
-import com.tahir.omiseassignment.Configurations.AppConstant
+import com.tahir.omiseassignment.AppConstant
 import com.tahir.omiseassignment.Interfaces.EndpointsInterface
 
 import dagger.Module
@@ -12,13 +12,15 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
-class NetModule// Constructor needs one parameter to instantiate.
-{
+class NetModule {
 
     internal val httpLoggingInterceptor: HttpLoggingInterceptor
         @Provides
+        @Singleton
+
         get() {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -27,12 +29,16 @@ class NetModule// Constructor needs one parameter to instantiate.
 
 
     @Provides
+    @Singleton
+
     internal fun getApiInterface(retroFit: Retrofit): EndpointsInterface {
         return retroFit.create(EndpointsInterface::class.java)
     }
 
     @Named("charity")
     @Provides
+    @Singleton
+
     internal fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(AppConstant.BASE_URL_Charity)
@@ -68,12 +74,16 @@ class NetModule// Constructor needs one parameter to instantiate.
     }
 
     @Provides
+    @Singleton
+
     internal fun getGson(): Gson {
         return Gson()
     }
 
     @Named("omise")
     @Provides
+    @Singleton
+
     internal fun getRetrofitOmise(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(AppConstant.BASE_URL_OMISE)
@@ -82,6 +92,17 @@ class NetModule// Constructor needs one parameter to instantiate.
             .build()
     }
 
+    @Named("omise_token")
+    @Provides
+    @Singleton
+
+    internal fun getRetrofitOmise_token(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(AppConstant.BASE_URL_OMISE_TOKEN)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(getOkHttpClient_Omise(httpLoggingInterceptor))
+            .build()
+    }
 
     fun getCertificatePinner(BaseUrl: String, pins: Array<String>): CertificatePinner {
 

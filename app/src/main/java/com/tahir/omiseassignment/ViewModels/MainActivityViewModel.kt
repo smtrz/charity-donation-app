@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tahir.omiseassignment.Components.App
 import com.tahir.omiseassignment.Models.BaseClass
-import com.tahir.omiseassignment.Models.data
 import com.tahir.omiseassignment.Repository.AppRepository
 import javax.inject.Inject
 
@@ -27,7 +26,6 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         return repo!!.ifDataIsloading()
 
     }
-    // just refresh the data based on the result.
 
     fun callCharityAPI(): LiveData<BaseClass> {
         return repo!!.getallCharities()

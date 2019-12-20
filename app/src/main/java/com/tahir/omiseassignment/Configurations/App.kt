@@ -23,6 +23,9 @@ class App : Application() {
 
     }
 
+    fun getApp(): App? {
+        return app
+    }
     companion object {
         lateinit var app: App
     }
