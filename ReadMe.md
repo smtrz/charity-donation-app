@@ -10,8 +10,9 @@ Omise Assignment is an android application written in 'KOTLIN' that lists down c
  1) For Listing charity following 'GET' end-point is used :
     - https://virtserver.swaggerhub.com/chakritw/tamboon-api/1.0.0/charities
  
- 2) For generating Payment token OMISE Token API is used.
- 3) For charging the customer using the token generated from SDK the following 'POST' end-point is used :
+ 2) For generating Payment token following OMISE Token end-point is used.
+    - https://vault.omise.co/tokens
+ 3) For charging the customer using the token generated the following 'POST' end-point is used :
     - https://api.omise.co/charges
 
 # Features
@@ -20,7 +21,7 @@ Omise Assignment is an android application written in 'KOTLIN' that lists down c
   - Clean UI and code
   - SSL public key pinning
   - Proguard Ready
-  - NDK support for hiding senstive data and keys from obfuscation
+  - NDK support for hiding senstive data and keys from reverse engineering
   - Ready test cases for testing successful and failed transactions.
 
 

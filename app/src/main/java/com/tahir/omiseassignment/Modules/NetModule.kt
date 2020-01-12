@@ -1,4 +1,4 @@
-package com.tahir.omiseassignment.Configurations
+package com.tahir.omiseassignment.Modules
 
 import com.google.gson.Gson
 import com.tahir.omiseassignment.AppConstant

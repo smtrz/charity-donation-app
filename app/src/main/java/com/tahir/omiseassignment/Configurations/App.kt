@@ -4,6 +4,7 @@ import android.app.Application
 import com.tahir.omiseassignment.Components.AppLevelComponent
 import com.tahir.omiseassignment.Components.DaggerAppLevelComponent
 import com.tahir.omiseassignment.Modules.ContextModule
+import com.tahir.omiseassignment.Modules.NetModule
 import com.tahir.omiseassignment.Modules.RepositoryModule
 
 
