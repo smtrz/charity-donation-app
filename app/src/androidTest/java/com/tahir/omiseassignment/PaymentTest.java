@@ -51,6 +51,7 @@ public class PaymentTest {
 
 
         viewModel.getDonationResponse().observeForever(data_observer);
+
     }
 
 
@@ -60,9 +61,17 @@ public class PaymentTest {
     public void testCardsufficientBalance() {
         viewModel.postDonation("Test User", "4242424242424242", "2000");
         try {
-            Thread.sleep(3000);
+            Thread.sleep(8000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+        if (viewModel.getDonationResponse() == null) {
+
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -77,11 +86,18 @@ public class PaymentTest {
     public void testCardInsufficientBalance() {
         viewModel.postDonation("Test User", "4111 1111 1114 0011", "2000");
         try {
-            Thread.sleep(3000);
+            Thread.sleep(8000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        if (viewModel.getDonationResponse() == null) {
 
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         Assert.assertEquals(viewModel.getDonationResponse().getValue().getStatus(), Codes.failed.toString());
 
