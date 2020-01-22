@@ -68,7 +68,7 @@ public class PaymentTest {
         if (viewModel.getDonationResponse() == null) {
 
             try {
-                Thread.sleep(6000);
+                Thread.sleep(8000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -93,7 +93,7 @@ public class PaymentTest {
         if (viewModel.getDonationResponse() == null) {
 
             try {
-                Thread.sleep(6000);
+                Thread.sleep(8000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

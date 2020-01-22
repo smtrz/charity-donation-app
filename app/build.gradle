@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "org.sonarqube"
+
 sonarqube {
     properties {
         property "sonar.projectName", "kotlinAssignment1"
@@ -15,6 +16,16 @@ sonarqube {
     }
 }
 android {
+    lintOptions {
+        // set to true to turn off analysis progress reporting by lint
+   //     quiet true
+        // if true, stop the gradle build if errors are found
+        abortOnError false
+        // do not ignore warnings
+    //    warningsAsErrors true
+    //    lintConfig file('lint.xml')
+    }
+
     externalNativeBuild {
         ndkBuild {
             path 'src/main/jni/Android.mk'
