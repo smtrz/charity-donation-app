@@ -10,10 +10,11 @@ sonarqube {
         property "sonar.projectKey", "TestPaymentProject"
         property "sonar.host.url", "http://172.16.4.148:9000"
         property "sonar.language", "java,kotlin"
-        property "sonar.sources", "src/main/"
+        property "sonar.sources", "src/main/java"
         property "sonar.inclusions", "*.java,*.kt"
         property "sonar.login", "admin"
         property "sonar.password", "admin"
+
     }
 }
 android {
