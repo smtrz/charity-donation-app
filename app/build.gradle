@@ -11,7 +11,6 @@ sonarqube {
         property "sonar.host.url", "http://172.16.4.148:9000"
         property "sonar.language", "java,kotlin"
         property "sonar.sources", "src/main/"
-        property "sonar.inclusions", "*.java,*.kt"
         property "sonar.login", "admin"
         property "sonar.password", "admin"
 
