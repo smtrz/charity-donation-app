@@ -14,6 +14,9 @@ sonarqube {
         property "sonar.inclusions", "*.java,*.kt"
         property "sonar.login", "admin"
         property "sonar.password", "admin"
+        property "sonar.java.binaries", "target/classes"
+      
+
 
     }
 }
