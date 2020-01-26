@@ -237,7 +237,7 @@ public class PaymentTest {
         signal.await();
 
 
-        Assert.assertEquals(dr.getStatus(), Codes.failed.toString());
+        Assert.assertEquals(dr.getStatus(), Codes.successful.toString());
         removeObservers();
 
 
