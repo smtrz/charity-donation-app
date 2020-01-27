@@ -227,7 +227,7 @@ public class PaymentTest {
 
                     signal.countDown();
                     dr = donationResponse;
-                    System.out.println("this is 2 === " + donationResponse.getStatus());
+                 //   System.out.println("this is 2 === " + donationResponse.getStatus());
                 }
 
 
@@ -237,7 +237,7 @@ public class PaymentTest {
         signal.await();
 
 
-        Assert.assertEquals(dr.getStatus(), Codes.successful.toString());
+        Assert.assertEquals(dr.getStatus(), Codes.failed.toString());
         removeObservers();
 
 
