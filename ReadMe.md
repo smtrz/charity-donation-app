@@ -20,7 +20,7 @@ Charity Donation app is an android application written in 'KOTLIN' that lists do
 # Testing cards for Donation :
 Testing cards can be obtained from the below mentioned link :
 
-    https://www.omise.co/api-testing
+   - https://www.omise.co/api-testing
 
 
 
@@ -53,9 +53,9 @@ License
 ----
 Designed and developed by :
 
-Tahir Raza
-smtrz@yahoo.com
-Skype: smtrz110
-Profile: https://www.linkedin.com/in/tahiraza/
+Tahir Raza<br/>
+smtrz@yahoo.com<br/>
+Skype: smtrz110<br/>
+Profile: https://www.linkedin.com/in/tahiraza/<br/>
 More about me : http://highbryds.com/tahir-raza
 
