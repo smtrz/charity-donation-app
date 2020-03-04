@@ -6,9 +6,7 @@
 
     >
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/act_toolbar" />
+    <include layout="@layout/act_toolbar" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

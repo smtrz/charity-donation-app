@@ -83,9 +83,8 @@ public class PaymentTest {
         };
         viewModel.getDonationResponse().observeForever(data_observer);
         signal.await();
-        System.out.println(" this is obs === " + viewModel.getDonationResponse().hasActiveObservers());
+        // System.out.println(" this is obs === " + viewModel.getDonationResponse().hasActiveObservers());
         Assert.assertEquals(dr.getStatus(), Codes.successful.toString());
-
         removeObservers();
 
         //  signal.await();
@@ -227,7 +226,7 @@ public class PaymentTest {
 
                     signal.countDown();
                     dr = donationResponse;
-                 //   System.out.println("this is 2 === " + donationResponse.getStatus());
+                    //   System.out.println("this is 2 === " + donationResponse.getStatus());
                 }
 
 

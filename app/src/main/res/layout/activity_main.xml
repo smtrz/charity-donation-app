@@ -4,7 +4,6 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/btn_layout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
@@ -31,12 +30,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/tool_bar"
-            layout="@layout/act_toolbar" />
+        <include layout="@layout/act_toolbar" />
 
         <TextView
-            android:id="@+id/empty_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -44,7 +40,6 @@
             android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/error_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"

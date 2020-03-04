@@ -1,10 +1,13 @@
-# Omise Assignment
+# Charity Donation App
 
 
-Omise Assignment is an android application written in 'KOTLIN' that lists down charities and let people donate for the selected charity using their credit card via OMISE , it is designed using android's architectural components such as :
+Charity Donation app is an android application written in 'KOTLIN' that lists down charities and let people donate for the selected charity using their credit card via OMISE Payment Gateway(https://www.omise.co/) , it is designed using android's architectural components such as :
 
   - ViewModel
   - Live Data
+# Screenshots
+
+<img src="https://github.com/smtrz/charity-donation-app/blob/master/screen_1.png" alt="drawing" width="350"/>  |  <img src="https://github.com/smtrz/charity-donation-app/blob/master/screen_2.png" alt="drawing" width="350"/>
 
 # Note
  1) For Listing charity following 'GET' end-point is used :
@@ -14,6 +17,12 @@ Omise Assignment is an android application written in 'KOTLIN' that lists down c
     - https://vault.omise.co/tokens
  3) For charging the customer using the token generated the following 'POST' end-point is used :
     - https://api.omise.co/charges
+# Testing cards for Donation :
+Testing cards can be obtained from the below mentioned link :
+
+    https://www.omise.co/api-testing
+
+
 
 # Features
 
